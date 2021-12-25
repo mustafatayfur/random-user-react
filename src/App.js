@@ -15,7 +15,7 @@ import phones from "./assets/phone.svg";
 function App() {
   const [users, setUsers] = useState([]);
   const [values, setValues]= useState("");
-  const [title, setTitle] = useState("");
+ 
 
   const baseUrl = "https://randomuser.me/api/";
   const getUsers = async () => {
@@ -29,11 +29,13 @@ function App() {
   useEffect(() => {
     getUsers();
   }, []);
+
   const handleMouseOver = (e) => {
     return ( 
         e.target.value
       )
   };
+  
   return (
     <div className="App">
       {users.map((user, index) => {
@@ -52,7 +54,7 @@ function App() {
             </Row>
             <Card.Body>
               <Card.Text>
-                { `My ${e.target.value} is`}
+                
               </Card.Text>
               <Card.Title>Special title treatment</Card.Title>
               <Container>
