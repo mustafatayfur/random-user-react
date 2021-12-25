@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+/** @format */
+
+import { Button, Card } from "react-bootstrap";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Card className='text-center'>
+        <Card.Header>Featured</Card.Header>
+        <Card.Body>
+          <Card.Title>Special title treatment</Card.Title>
+          <Card.Text>
+            With supporting text below as a natural lead-in to additional
+            content.
+          </Card.Text>
+          <div className="btn">
+          <Button variant='primary'>Go somewhere</Button>
+          </div>
+          <div className="btn">
+          <Button variant='primary'>Go somewhere</Button>
+          </div>
+          
+          
+        </Card.Body>
+        <Card.Footer className='text-muted'>2 days ago</Card.Footer>
+      </Card>
     </div>
   );
 }
