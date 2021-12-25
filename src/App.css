@@ -36,4 +36,24 @@
     transform: rotate(360deg);
   }
 }
-
+.img{
+  height: 50px;
+  box-shadow: 2px 2px 5px;
+}
+.header{
+    height: 150px;
+    /* background-color: rgba(185, 185, 185, 0.253); */
+}
+.user{
+  height: 150px;
+  /* box-shadow: 2px 2px 5px; */
+  position: relative;
+  top: -100px;
+  /* outline-style: double;
+  outline-width: 1px;
+  outline-offset: 15px; */
+  border: 1px solid rgb(192, 192, 192);
+  outline: 1px solid rgb(194, 194, 194) ;
+  outline-offset: 5px ;
+  
+}
