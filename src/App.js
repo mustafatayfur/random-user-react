@@ -1,6 +1,6 @@
 /** @format */
 
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Col, Image, Row } from "react-bootstrap";
 import "./App.css";
 
 function App() {
@@ -14,14 +14,17 @@ function App() {
             With supporting text below as a natural lead-in to additional
             content.
           </Card.Text>
-          <div className="btn">
-          <Button variant='primary'>Go somewhere</Button>
+          <Row>
+            <Col xs={6} md={4}>
+              <Image src='holder.js/171x180' roundedCircle />
+            </Col>
+          </Row>
+          <div className='btn'>
+            <Button variant='primary'>Go somewhere</Button>
           </div>
-          <div className="btn">
-          <Button variant='primary'>Go somewhere</Button>
+          <div className='btn'>
+            <Button variant='primary'>Go somewhere</Button>
           </div>
-          
-          
         </Card.Body>
         <Card.Footer className='text-muted'>2 days ago</Card.Footer>
       </Card>
