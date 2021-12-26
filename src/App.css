@@ -3,8 +3,8 @@
   padding: 0;
 }
 body{
-  background: rgb(255,200,0);
-background: linear-gradient(180deg, rgba(255,200,0,1) 40%, rgba(235,235,235,1) 40%);
+  background: rgb(242,200,122);
+background: linear-gradient(180deg, rgba(242,200,122,1) 40%, rgba(235,235,235,1) 40%);
   background-repeat: no-repeat;
   background-attachment: fixed;
  
