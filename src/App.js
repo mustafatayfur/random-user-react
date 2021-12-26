@@ -27,6 +27,7 @@ function App() {
     // console.log(data.results);
     const person = data.results;
     setUsers(person);
+    
     setCurrentData({
       title: 'name',
       info: 
@@ -39,6 +40,7 @@ function App() {
 
   useEffect(() => {
     getUsers();
+    
   }, []);  
   
 
@@ -168,14 +170,15 @@ function App() {
                 <Button variant="primary" onClick={getUsers}>NEW USER</Button>
               </div>
               <div className="btn">
-                <Button variant="primary" onClick={()=> setVisible(true)}>ADD USER</Button>
+                <Button variant="primary" 
+                onClick={()=> 
+                  setVisible(true)
+                }>ADD USER</Button>
               </div>
             </Card.Body>
             {
               visible && <MyTable user={user}  />
             }
-            
-
           </Card>
         );
       })}
