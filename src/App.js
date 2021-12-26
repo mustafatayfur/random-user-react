@@ -15,27 +15,29 @@ import phones from "./assets/phone.svg";
 function App() {
   const [users, setUsers] = useState([]);
   const [text, setText] = useState();
+  const [currenyData, setCurrentData] = useState({})
+
   const baseUrl = "https://randomuser.me/api/";
   const getUsers = async () => {
     // const res = await axios.get(baseUrl);
     const {data} = await axios.get(baseUrl);
     // console.log(data);
     // console.log(data.results);
-    setUsers(data.results);
+    const person = data.results;
+    setUsers(person);
+    setCurrentData({
+      title: 'name',
+      info: 
+        person[0].name.title + " " + person[0].name.first + " " + person[0].name.last,
+    })
+    console.log(currenyData);
     
   };
-  console.log(users);
+ 
 
   useEffect(() => {
     getUsers();
-  }, []);
-
-  const handleMouseOver = (e) => {
-    return (
-      setText(e.target.dataset.label)
-      )
-  };
-  
+  }, []);  
   
 
   return (
