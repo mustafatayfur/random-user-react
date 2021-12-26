@@ -7,14 +7,14 @@ const MyTable = ({user}) => {
 
   const { name, email, phone, dob } = user
   const newPerson = {
-    name: `${first} ${last}`,
-    phone,
-    email,
-    age,
-    street: `${number} ${name}`,
-    name: `${first} ${last}`,
+    name: `${name.first} ${name.last}`,
+    email: email,
+    phone: phone,
+    age: dob.age,
+    
   }
-  localStorage.setItem('myData', user);
+  localStorage.setItem('myData', newPerson);
+
 
     return (
         <Table striped bordered hover size="sm">
@@ -31,7 +31,7 @@ const MyTable = ({user}) => {
   </thead>
   <tbody>
     <tr>
-      <td>{`${name.first} ${name.last}`}</td>
+      <td>{name}</td>
       <td>{email}</td>
       <td>{phone}</td>
       <td>{dob.age}</td>
