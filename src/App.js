@@ -11,11 +11,13 @@ import growingWoman from "./assets/growing-up-woman.svg";
 import map from "./assets/map.svg";
 import padlock from "./assets/padlock.svg";
 import phones from "./assets/phone.svg";
+import MyTable from "./components/MyTable";
 
 function App() {
   const [users, setUsers] = useState([]);
-  const [text, setText] = useState();
-  const [currenyData, setCurrentData] = useState({})
+  const [visible, setVisible] = useState(false);
+  const [currentData, setCurrentData] = useState({})
+  
 
   const baseUrl = "https://randomuser.me/api/";
   const getUsers = async () => {
@@ -30,7 +32,7 @@ function App() {
       info: 
         person[0].name.title + " " + person[0].name.first + " " + person[0].name.last,
     })
-    console.log(currenyData);
+    console.log(currentData);
     
   };
  
@@ -57,15 +59,27 @@ function App() {
               </Col>
             </Row>
             <Card.Body>
-              <Card.Text>
-                {text}
-              </Card.Text>
-              <Card.Title>Special title treatment</Card.Title>
+              {currentData ? (
+                <Card.Text>
+                  My {currentData.title} is <br/>
+                  {currentData.info}
+                </Card.Text>) : (
+                  <Card.Text style={{color: "white"}}>
+                    a <br/> a
+                  </Card.Text>
+                )
+              }
               <Container>
                 <Row>
                   <Col xs={6} md={4} lg={2}>
                     <Image
-                      onClick={(e) => handleMouseOver(e)}
+                      onMouseOver={() => {
+                        setCurrentData({
+                          title: "name",
+                          info: `${name.first} ${name.last}`,
+                        })
+                      }}
+                      onMouseLeave={()=> setCurrentData("")}
                       src={gender === "male" ? man : woman}
                       className="img"
                       roundedCircle
@@ -78,6 +92,13 @@ function App() {
                       className="img"
                       roundedCircle
                       value={email}
+                      onMouseOver={() => {
+                        setCurrentData({
+                          title: "email",
+                          info: email,
+                        })
+                      }}
+                      onMouseLeave={()=> setCurrentData("")}
                     />
                   </Col>
                   <Col xs={6} md={4} lg={2}>
@@ -86,6 +107,13 @@ function App() {
                       className="img"
                       roundedCircle
                       value={dob.age}
+                      onMouseOver={() => {
+                        setCurrentData({
+                          title: "age",
+                          info: dob.age,
+                        })
+                      }}
+                      onMouseLeave={()=> setCurrentData("")}
                     />
                   </Col>
                   <Col xs={6} md={4} lg={2}>
@@ -94,14 +122,13 @@ function App() {
                     className="img" 
                     roundedCircle
                     value={location.street.number + location.street.name}
-                    />
-                  </Col>
-                  <Col xs={6} md={4} lg={2}>
-                    <Image 
-                    src={padlock} 
-                    className="img" 
-                    roundedCircle 
-                    value={login.password}
+                    onMouseOver={() => {
+                      setCurrentData({
+                        title: "street",
+                        info:`${location.street.number } ${location.street.name}`,
+                      })
+                    }}
+                    onMouseLeave={()=> setCurrentData("")}
                     />
                   </Col>
                   <Col xs={6} md={4} lg={2}>
@@ -110,17 +137,45 @@ function App() {
                      className="img" 
                      roundedCircle 
                      value={phone}
+                     onMouseOver={() => {
+                      setCurrentData({
+                        title: "phone",
+                        info:phone,
+                      })
+                    }}
+                    onMouseLeave={()=> setCurrentData("")}
                      />
                   </Col>
+                  <Col xs={6} md={4} lg={2}>
+                    <Image 
+                    src={padlock} 
+                    className="img" 
+                    roundedCircle 
+                    value={login.password}
+                    onMouseOver={() => {
+                      setCurrentData({
+                        title: "password",
+                        info:login.password,
+                      })
+                    }}
+                    onMouseLeave={()=> setCurrentData("")}
+                    />
+                  </Col>
+                  
                 </Row>
               </Container>
               <div className="btn">
-                <Button variant="primary">NEW USER</Button>
+                <Button variant="primary" onClick={getUsers}>NEW USER</Button>
               </div>
               <div className="btn">
-                <Button variant="primary">ADD USER</Button>
+                <Button variant="primary" onClick={()=> setVisible(true)}>ADD USER</Button>
               </div>
             </Card.Body>
+            {
+              visible && <MyTable user={user}  />
+            }
+            
+
           </Card>
         );
       })}
