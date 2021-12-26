@@ -14,28 +14,29 @@ import phones from "./assets/phone.svg";
 
 function App() {
   const [users, setUsers] = useState([]);
-  const [values, setValues]= useState("");
- 
-
   const baseUrl = "https://randomuser.me/api/";
   const getUsers = async () => {
     // const res = await axios.get(baseUrl);
-    const { data } = await axios.get(baseUrl);
+    const {data} = await axios.get(baseUrl);
     // console.log(data);
     // console.log(data.results);
     setUsers(data.results);
-    console.log(users);
+    
   };
+  console.log(users);
+  
   useEffect(() => {
     getUsers();
   }, []);
 
   const handleMouseOver = (e) => {
-    return ( 
-        e.target.value
-      )
+    return (
+      e.target.value
+    )
   };
   
+  
+
   return (
     <div className="App">
       {users.map((user, index) => {
@@ -61,11 +62,11 @@ function App() {
                 <Row>
                   <Col xs={6} md={4} lg={2}>
                     <Image
-                      onMouseOver={()=> handleMouseOver()}
+                      onMouseOver={handleMouseOver}
                       src={gender === "male" ? man : woman}
                       className="img"
                       roundedCircle
-                      value={name.first}
+                      value={name.first + name.last}
                     />
                   </Col>
                   <Col xs={6} md={4} lg={2}>
@@ -80,20 +81,34 @@ function App() {
                     <Image
                       src={gender === "male" ? growingMan : growingWoman}
                       className="img"
-                      value={dob.age}
                       roundedCircle
+                      value={dob.age}
                     />
                   </Col>
                   <Col xs={6} md={4} lg={2}>
-                    <Image src={map} className="img" value={location.street.number + location.street.name} roundedCircle />
+                    <Image 
+                    src={map} 
+                    className="img" 
+                    roundedCircle
+                    value={location.street.number + location.street.name}
+                    />
                   </Col>
                   <Col xs={6} md={4} lg={2}>
-                    <Image src={phones} value={phone} className="img" roundedCircle />
+                    <Image 
+                    src={padlock} 
+                    className="img" 
+                    roundedCircle 
+                    value={login.password}
+                    />
                   </Col>
                   <Col xs={6} md={4} lg={2}>
-                    <Image src={padlock} value={login.password} className="img" roundedCircle />
+                    <Image
+                     src={phones} 
+                     className="img" 
+                     roundedCircle 
+                     value={phone}
+                     />
                   </Col>
-                  
                 </Row>
               </Container>
               <div className="btn">
