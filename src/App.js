@@ -14,6 +14,7 @@ import phones from "./assets/phone.svg";
 
 function App() {
   const [users, setUsers] = useState([]);
+  const [text, setText] = useState();
   const baseUrl = "https://randomuser.me/api/";
   const getUsers = async () => {
     // const res = await axios.get(baseUrl);
@@ -31,8 +32,8 @@ function App() {
 
   const handleMouseOver = (e) => {
     return (
-      e.target.value
-    )
+      setText(e.target.dataset.label)
+      )
   };
   
   
@@ -55,18 +56,18 @@ function App() {
             </Row>
             <Card.Body>
               <Card.Text>
-                
+                {text}
               </Card.Text>
               <Card.Title>Special title treatment</Card.Title>
               <Container>
                 <Row>
                   <Col xs={6} md={4} lg={2}>
                     <Image
-                      onMouseOver={handleMouseOver}
+                      onClick={(e) => handleMouseOver(e)}
                       src={gender === "male" ? man : woman}
                       className="img"
                       roundedCircle
-                      value={name.first + name.last}
+                      value={name.first}
                     />
                   </Col>
                   <Col xs={6} md={4} lg={2}>
