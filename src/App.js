@@ -24,7 +24,7 @@ function App() {
     
   };
   console.log(users);
-  
+
   useEffect(() => {
     getUsers();
   }, []);
@@ -42,7 +42,7 @@ function App() {
       {users.map((user, index) => {
         const { name, location, gender, email, phone, login, dob } = user;
         return (
-          <Card className="text-center" key={index}>
+          <Card className="card text-center" key={index}>
             <Card.Header className="header"></Card.Header>
             <Row>
               <Col>
