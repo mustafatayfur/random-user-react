@@ -6,6 +6,8 @@ import { MdAutoDelete } from "react-icons/md";
 import { BiEdit } from "react-icons/bi";
 
 const MyTable = ({ user }) => {
+  // const { name, email, phone, dob } = localUser[0];
+  // console.log(localUser[0]);
   const { name, email, phone, dob } = user;
 
   return (
@@ -21,7 +23,7 @@ const MyTable = ({ user }) => {
       </thead>
       <tbody>
         <tr>
-          <td>{name}</td>
+          <td>{`${name.first} ${name.last}`}</td>
           <td>{email}</td>
           <td>{phone}</td>
           <td>{dob.age}</td>

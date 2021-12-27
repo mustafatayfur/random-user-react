@@ -13,14 +13,26 @@ import padlock from "./assets/padlock.svg";
 import phones from "./assets/phone.svg";
 import MyTable from "./components/MyTable";
 
+// const getLocalStorage = ()=> {
+//   let getData = localStorage.getItem('myData')
+//   if (getData){
+//     return JSON.parse(localStorage.getItem('myData'))
+//   }else{
+//     return []
+//   }
+// }
+
 function App() {
   const [users, setUsers] = useState([]);
   const [visible, setVisible] = useState(false);
   const [currentData, setCurrentData] = useState({})
+  // const [userInfo, setUserInfo] = useState([])
   
-
+  
   const baseUrl = "https://randomuser.me/api/";
+  
   const getUsers = async () => {
+  
     // const res = await axios.get(baseUrl);
     const {data} = await axios.get(baseUrl);
     // console.log(data);
@@ -33,15 +45,41 @@ function App() {
       info: 
         person[0].name.title + " " + person[0].name.first + " " + person[0].name.last,
     })
-    console.log(currentData);
-    
+    // console.log(currentData);
   };
  
+  
 
+  // useEffect(()=> {
+  //   localStorage.setItem('myData', JSON.stringify(users))
+  // }, [users])
+
+
+  
   useEffect(() => {
     getUsers();
-    
+    // setUserInfo(users);
   }, []);  
+ 
+
+  // const createUser = () => {
+  //   if (userInfo.filter((user) => user.email === userInfo.email).length > 0) {
+  //     alert("You have already added...");
+  //   } else { 
+  //     setUserInfo([
+  //       ...userInfo, // önceki verileri tutnak için kullandık
+  //       {
+  //         name: users?.name?.first,
+  //         email: users?.email,
+  //         phone: users?.phone,
+  //         age: users?.dob?.age
+  //       },
+  //      ]);
+  //     }    
+  //      setVisible(true); 
+  // };
+  // console.log(userInfo);
+  
   
 
   return (
@@ -171,13 +209,14 @@ function App() {
               </div>
               <div className="btn">
                 <Button variant="primary" 
-                onClick={()=> 
-                  setVisible(true)
+                onClick={()=> {
+                    setVisible(true)
+                }
                 }>ADD USER</Button>
               </div>
             </Card.Body>
             {
-              visible && <MyTable user={user}  />
+              visible && <MyTable user={user} />
             }
           </Card>
         );
@@ -186,3 +225,14 @@ function App() {
   );
 }
 export default App;
+
+
+
+// useEffect(()=> {
+//   const myUser = localStorage.getItem("myData");
+//   if (myUser){
+//     setLocalUser(JSON.parse(myUser))
+//   }
+//   console.log(myUser);
+// },[])
+// console.log(localUser)
