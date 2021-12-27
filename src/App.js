@@ -38,6 +38,11 @@ function App() {
   useEffect(() => {
     getUsers();
   }, []);
+
+  const newUser = () => {
+    setAddUser([...addUser, users]);
+  };
+
   console.log(addUser);
   return (
     <div className="App">
