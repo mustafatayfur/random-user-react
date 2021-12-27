@@ -1,8 +1,5 @@
-/** @format */
-
 import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
 import "./App.css";
-// import Icon from "./components/Icon";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import man from "./assets/man.svg";
@@ -14,137 +11,46 @@ import map from "./assets/map.svg";
 import padlock from "./assets/padlock.svg";
 import phones from "./assets/phone.svg";
 import MyTable from "./components/MyTable";
-
-// const getLocalStorage = ()=> {
-//   let getData = localStorage.getItem('myData')
-//   if (getData){
-//     return JSON.parse(localStorage.getItem('myData'))
-//   }else{
-//     return []
-//   }
-// }
-
 function App() {
-  const [users, setUsers] = useState({
-    
-    name: {
-      title: '',
-      first: '',
-      last: ''
-    },
-    location: {
-      city: '',
-      country: ''
-    },
-    email: '',
-    dob: {
-      age: 52
-    },
-    
-    phone: '',
-    picture: {
-      large: ''
-    },
-    login: {
-      password: ''
-    }
-  });
-  const [tableData,setTableData] =useState([]);
+  const [users, setUsers] = useState([]);
+  const [addUser, setAddUser] = useState([]);//1
   const [visible, setVisible] = useState(false);
+  // const [userInfo, setUserInfo] = useState([]); //add user
   const [currentData, setCurrentData] = useState({});
-  // const [userInfo, setUserInfo] = useState([])
-  const baseUrl = "https://randomuser.me/api/";
-
-  // useEffect(() => {
-  //   localStorage.setItem("myData", JSON.stringify(users));
-  // }, [users]);
-
-
-  
-  const addUser = () => {
-    setTableData(tableData => [...tableData, users]);
-    getUsers();
-    setVisible(true);
-  };
-  
-console.log(tableData)
-
-
   const getUsers = async () => {
+    const baseUrl = "https://randomuser.me/api/";
     // const res = await axios.get(baseUrl);
     const { data } = await axios.get(baseUrl);
     // console.log(data);
     // console.log(data.results);
     const person = data.results;
     setUsers(person);
-
     setCurrentData({
       title: "name",
-      info:+
+      info:
         person[0].name.title +
         " " +
         person[0].name.first +
         " " +
         person[0].name.last,
     });
-    // console.log(currentData);
   };
-
-
-
-
   useEffect(() => {
     getUsers();
-    // setUserInfo(users);
   }, []);
-
-  // const createUser = () => {
-  //   if (userInfo.filter((user) => user.email === userInfo.email).length > 0) {
-  //     alert("You have already added...");
-  //   } else {
-  //     setUserInfo([
-  //       ...userInfo, // önceki verileri tutnak için kullandık
-  //       {
-  //         name: users?.name?.first,
-  //         email: users?.email,
-  //         phone: users?.phone,
-  //         age: users?.dob?.age
-  //       },
-  //      ]);
-  //     }
-  //      setVisible(true);
-  // };
-
-  // console.log(userInfo);
-  // const createUser = () => {
-  //   if (users.filter((user) => user.email === users.email).length > 0) {
-  //     alert("You have already added...");
-  //   } else {
-  //     setUsers([
-  //       ...users, // önceki verileri tutnak için kullandık
-  //       {
-  //         name: users?.name?.first,
-  //         email: users?.email,
-  //         phone: users?.phone,
-  //         age: users?.dob?.age
-  //       },
-  //      ]);
-  //     }
-  //      setVisible(true);
-  // };
-
+  console.log(addUser);
   return (
-    <div className='App'>
-      {tableData?.map((user, index) => {
+    <div className="App">
+      {users?.map((user, index) => {
         const { name, location, gender, email, phone, login, dob } = user;
         return (
-          <Card className='card text-center' key={index}>
-            <Card.Header className='header'></Card.Header>
+          <Card className="card text-center" key={index}>
+            <Card.Header className="header"></Card.Header>
             <Row>
               <Col>
                 <Image
                   src={user.picture.large}
-                  className='user'
+                  className="user"
                   roundedCircle
                 />
               </Col>
@@ -157,13 +63,17 @@ console.log(tableData)
                 </Card.Text>
               ) : (
                 <Card.Text style={{ color: "white" }}>
-                  a <br /> a
+                  ad <br /> asd
                 </Card.Text>
               )}
               <Container>
                 <Row>
                   <Col xs={6} md={4} lg={2}>
                     <Image
+                      src={gender === "male" ? man : woman}
+                      className="img"
+                      roundedCircle
+                      value={name.fist}
                       onMouseOver={() => {
                         setCurrentData({
                           title: "name",
@@ -171,16 +81,12 @@ console.log(tableData)
                         });
                       }}
                       onMouseLeave={() => setCurrentData("")}
-                      src={gender === "male" ? man : woman}
-                      className='img'
-                      roundedCircle
-                      value={name.first}
                     />
                   </Col>
                   <Col xs={6} md={4} lg={2}>
                     <Image
                       src={mail}
-                      className='img'
+                      className="img"
                       roundedCircle
                       value={email}
                       onMouseOver={() => {
@@ -195,7 +101,7 @@ console.log(tableData)
                   <Col xs={6} md={4} lg={2}>
                     <Image
                       src={gender === "male" ? growingMan : growingWoman}
-                      className='img'
+                      className="img"
                       roundedCircle
                       value={dob.age}
                       onMouseOver={() => {
@@ -210,13 +116,13 @@ console.log(tableData)
                   <Col xs={6} md={4} lg={2}>
                     <Image
                       src={map}
-                      className='img'
+                      className="img"
                       roundedCircle
                       value={location.street.number + location.street.name}
                       onMouseOver={() => {
                         setCurrentData({
                           title: "street",
-                          info: `${location.street.number} ${location.street.name}`,
+                          info: `${location.street.number}  ${location.street.name}`,
                         });
                       }}
                       onMouseLeave={() => setCurrentData("")}
@@ -225,7 +131,7 @@ console.log(tableData)
                   <Col xs={6} md={4} lg={2}>
                     <Image
                       src={phones}
-                      className='img'
+                      className="img"
                       roundedCircle
                       value={phone}
                       onMouseOver={() => {
@@ -240,7 +146,7 @@ console.log(tableData)
                   <Col xs={6} md={4} lg={2}>
                     <Image
                       src={padlock}
-                      className='img'
+                      className="img"
                       roundedCircle
                       value={login.password}
                       onMouseOver={() => {
@@ -254,23 +160,24 @@ console.log(tableData)
                   </Col>
                 </Row>
               </Container>
-              <div className='btn'>
-                <Button variant='primary' onClick={getUsers}>
-                  NEW USER
+              <div className="btn">
+                <Button variant="primary" onClick={() => getUsers()}>
+                  New User
                 </Button>
               </div>
-              <div className='btn'>
+              <div className="btn">
                 <Button
-                  variant='primary'
-                  onClick={
-                    
-                    addUser
-                  }>
-                  ADD USER
+                  variant="primary"
+                  onClick={() => {
+                    setVisible(true);
+                    newUser();
+                  }}
+                >
+                  Add User
                 </Button>
               </div>
             </Card.Body>
-            {visible && <MyTable user={tableData} />}
+            {visible && <MyTable user={addUser} />}
           </Card>
         );
       })}
@@ -278,4 +185,3 @@ console.log(tableData)
   );
 }
 export default App;
-
