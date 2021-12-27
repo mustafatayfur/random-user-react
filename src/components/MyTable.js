@@ -1,14 +1,12 @@
-/** @format */
-
 import React from "react";
-import { Table } from "react-bootstrap";
-import { MdAutoDelete } from "react-icons/md";
-import { BiEdit } from "react-icons/bi";
+import { Row, Table } from "react-bootstrap";
 
-const MyTable = ({ user }) => {
-  // const { name, email, phone, dob } = localUser[0];
-  // console.log(localUser[0]);
-  const { name, email, phone, dob } = user;
+
+const MyTable = ({user }) => {
+  
+  // console.log(user)
+  // const { name, email, phone, dob } =user;
+ 
 
   return (
     <Table striped bordered hover size='sm'>
@@ -22,19 +20,16 @@ const MyTable = ({ user }) => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>{`${name.first} ${name.last}`}</td>
-          <td>{email}</td>
-          <td>{phone}</td>
-          <td>{dob.age}</td>
-          <td>
-            <MdAutoDelete className='me-3' />
-            <BiEdit />
-          </td>
-        </tr>
+        {user.map(row => (
+        <Row row={row}  key={row.email} />
+      ))}
+     
       </tbody>
     </Table>
   );
 };
 
 export default MyTable;
+// {user.map(row => (
+//   <Row row={row}  key={row.email} />
+// ))}
