@@ -43,7 +43,15 @@ function App() {
     setAddUser([...addUser, users]);
   };
 
+  const deleteUser = (deletedIndex) => {
+    // console.log("delete", deletedTaskId);
+    setAddUser(addUser.filter((item) => item[0]?.email !== deletedIndex));       
+  };
   console.log(addUser);
+
+  const visibleUser = ()=>{
+    setVisible(addUser.length > 0 ? true : false)
+  }
   return (
     <div className="App">
       {users?.map((user, index) => {
@@ -182,7 +190,7 @@ function App() {
                 </Button>
               </div>
             </Card.Body>
-            {visible && <MyTable user={addUser} />}
+            {visible && <MyTable user={addUser} deleteUser={deleteUser} />}
           </Card>
         );
       })}
