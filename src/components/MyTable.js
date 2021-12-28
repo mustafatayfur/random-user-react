@@ -5,7 +5,7 @@ import { MdAutoDelete } from "react-icons/md";
 const MyTable = ({ user, deleteUser }) => {
   // console.log("user", user);
   return (
-    <Table striped bordered hover size="sm">
+    <Table striped bordered hover size="sm" className="table">
       <thead>
         <tr>
           <th>First Name</th>

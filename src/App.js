@@ -72,14 +72,14 @@ function App() {
               {currentData ? (
                 <Card.Text>
                   My {currentData.title} is <br />
-                  {currentData.info}
+                  <h4>{currentData.info}</h4>
                 </Card.Text>
               ) : (
                 <Card.Text style={{ color: "white" }}>
                   ad <br /> asd
                 </Card.Text>
               )}
-              <Container>
+              <Container className="contain">
                 <Row>
                   <Col xs={6} md={4} lg={2}>
                     <Image
@@ -174,12 +174,13 @@ function App() {
                 </Row>
               </Container>
               <div className="btn">
-                <Button variant="primary" onClick={() => getUsers()}>
+                <Button className="button" variant="primary" onClick={() => getUsers()}>
                   New User
                 </Button>
               </div>
               <div className="btn">
                 <Button
+                  className="button"
                   variant="primary"
                   onClick={() => {
                     setVisible(true);
