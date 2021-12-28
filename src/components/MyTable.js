@@ -6,7 +6,7 @@ const MyTable = ({ user, deleteUser }) => {
   // console.log("user", user);
   return (
     <Table striped bordered hover size="sm" className="table">
-      <thead>
+      <thead className="thead">
         <tr>
           <th>First Name</th>
           <th>Email</th>
@@ -23,7 +23,7 @@ const MyTable = ({ user, deleteUser }) => {
             <td>{item[0]?.phone}</td>
             <td>{item[0]?.dob?.age}</td>
             <td>
-              <MdAutoDelete className="me-3" onClick={()=> deleteUser(item[0]?.email)}/>
+              <MdAutoDelete className="icon me-3" onClick={()=> deleteUser(item[0]?.email)}/>
               
             </td>
           </tr>

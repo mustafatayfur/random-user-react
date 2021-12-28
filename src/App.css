@@ -77,6 +77,7 @@ background: linear-gradient(180deg, rgba(242,200,122,1) 40%, rgba(235,235,235,1)
 .card{
   width: 600px;
   padding: 10px;
+  box-shadow: 4px 6px 6px 0px rgba(50, 50, 50, 0.69);
 }
 .table{
   margin:
@@ -84,4 +85,10 @@ background: linear-gradient(180deg, rgba(242,200,122,1) 40%, rgba(235,235,235,1)
 .button:hover{
   background-color: rgb(242,200,122);
   color: black;
+}
+.thead{
+  background-color: rgb(242,200,122);
+}
+.icon{
+  color:red;
 }
